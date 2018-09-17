@@ -1,0 +1,83 @@
+<html>
+    <body>
+        <canvas id="canvas" width="800" height="600"></canvas>
+        <script src="robot-arm.js"></script>
+        <script>
+            // Initialize the robot arm
+            var canvas = document.getElementById("canvas");
+            var robotArm = new RobotArm(canvas);
+            
+            // Either use loadLevel or randomLevel to create a start scene
+            robotArm.loadLevel("exercise 4");
+            
+            // My instructions come here
+            robotArm.speed = 700;
+
+            function disassemble() {
+                if (color == null) {
+                    robotArm.grab();
+                 }
+                else if (color == "green") {
+                    robotArm.moveRight();
+                    robotArm.moveRight();
+                    robotArm.drop();
+                    robotArm.moveLeft();
+                    robotArm.moveLeft();
+                }
+                else if (color == 'white') {
+                    robotArm.moveRight();
+                    robotArm.moveRight();
+                    robotArm.moveRight();
+                    robotArm.drop();
+                    robotArm.moveLeft();
+                    robotArm.moveLeft();
+                    robotArm.moveLeft();
+                 }
+                else if (color == 'blue'){
+                    robotArm.moveRight();
+                    robotArm.drop();  
+                 }
+            }
+
+            function assemble() {
+                if (color == null){
+                    robotArm.grab();
+                }
+
+                if (color == 'blue') {
+                    robotArm.drop();
+                    robotArm.moveRight();
+                    robotArm.moveRight();
+                }
+                if (color == 'white') {
+                    robotArm.moveLeft();
+                    robotArm.moveLeft();
+                    robotArm.drop();
+                    robotArm.moveRight();
+                }
+                if (color == 'green') {
+                    robotArm.moveLeft();
+                    robotArm.drop();
+                }
+            }
+
+
+            var color;
+            for (i=1; i<=6; i++) {
+                color = robotArm.scan();
+                disassemble();
+            }
+            
+
+            for (i=1; i<=6; i++) {
+                color = robotArm.scan();
+                assemble();
+            }
+
+
+
+            // Call run to run the animations
+            robotArm.run();
+        </script>
+    </body>
+</html>
