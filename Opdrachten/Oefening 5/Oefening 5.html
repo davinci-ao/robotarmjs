@@ -8,14 +8,33 @@
             var robotArm = new RobotArm(canvas);
             
             // Either use loadLevel or randomLevel to create a start scene
-            robotArm.loadLevel("exercise 1");
+            robotArm.loadLevel("exercise 6");
             
             // My instructions come here
-            robotArm.moveRight();
-            robotArm.grab();
-            robotArm.moveRight();
-            robotArm.drop();
-            
+            robotArm.speed = 500;
+
+            function routine() {
+                robotArm.grab();
+                robotArm.moveRight();
+                robotArm.drop();
+                robotArm.moveLeft();
+                robotArm.moveLeft();
+            }
+
+            for (i=1;i<=7;i++) {
+                robotArm.moveRight();
+            }
+
+            for (i=1; i<=8; i++) {
+                routine();
+            }     
+
+
+
+
+
+
+
 
             // Call run to run the animations
             robotArm.run();
